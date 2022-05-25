@@ -21,8 +21,8 @@
                     <option value="maniana">Mañana</option>
                     <option value="tarda">Tarde</option>
                 </select>
-                <label>Desde: <input type="date"> </label>
-                <label>Hasta: <input type="date"> </label>
+                <label>Desde: <input type="date"></label>
+                <label>Hasta: <input type="date"></label>
                 <button>Filtrar</button>
             </form>
         </section>
