@@ -38,4 +38,10 @@
             </table>
         </section>
     </main>
+    <footer>
+        Copyright 2022-2022. All Rights Reserved.
+        Sistema de Turnos is Powered by Grupo7.
+    </footer>
 </body>
+
+</html>
