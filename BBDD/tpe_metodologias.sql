@@ -66,7 +66,7 @@ CREATE TABLE `obra_social` (
 
 CREATE TABLE `turno` (
   `id_turno` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` datetime NOT NULL,
   `duracion` int(11) NOT NULL,
   `id_medico` int(11) NOT NULL,
   `id_paciente` int(11) DEFAULT NULL
