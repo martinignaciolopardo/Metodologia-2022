@@ -33,7 +33,12 @@
                     <td>HORARIO</td>
                 </thead>
                 <tbody>
-                    {include file='templates/vue/turnsList.tpl'}
+                    {foreach $turnos as $turno}
+                    <tr>
+                        <td>{$turno->dia}</td>
+                        <td>{$turno->horario}</td>
+                    </tr>
+                    {/foreach}
                 </tbody>
             </table>
         </section>
