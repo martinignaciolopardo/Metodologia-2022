@@ -1,8 +1,7 @@
 <?php
-    //require_once 'Controller/adminController.php';
-    //require_once 'Controller/publicController.php';
-    //require_once 'Controller/loginController.php';
-    //require_once 'RouterClass.php';
+    require_once 'Controller/TurnsController.php';
+    require_once 'Controller/loginController.php';
+    require_once 'RouterClass.php';
     
     // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -11,10 +10,11 @@
 
     $r = new Router();
 
-    // PUBLIC CONTROLLER
+    // TURNS CONTROLLER
+    $r->addRoute("turnos", "GET", "TurnsController", "showTurns"); // turnos
 
     //Ruta por defecto.
-    //$r->setDefaultRoute("publicController", "showHome");
+    //$r->setDefaultRoute("LoginController", "login");
 
     //run
-    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
+    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
