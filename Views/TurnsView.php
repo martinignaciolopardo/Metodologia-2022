@@ -10,8 +10,9 @@ class TurnsView
         $this->smarty = new Smarty();
     }
 
-    function renderTurns()
+    function renderTurns($turnos)
     {
+        $this->smarty->assign('turnos', $turnos);
         $this->smarty->display('templates/turnsMedic.tpl');
     }
 }
