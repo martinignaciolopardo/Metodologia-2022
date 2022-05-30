@@ -1,20 +1,20 @@
 <?php
-    require_once 'Controller/TurnsController.php';
-    require_once 'Controller/loginController.php';
-    require_once 'RouterClass.php';
-    
-    // CONSTANTES PARA RUTEO
-    define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
-    //define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
-    //define("LOGOUT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/logout');
+require_once './Controller/TurnsController.php';
+require_once './Controller/LoginController.php';
+require_once 'RouterClass.php';
 
-    $r = new Router();
+// CONSTANTES PARA RUTEO
+define("BASE_URL", 'http://' . $_SERVER["SERVER_NAME"] . ':' . $_SERVER["SERVER_PORT"] . dirname($_SERVER["PHP_SELF"]) . '/');
+//define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
+//define("LOGOUT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/logout');
 
-    // TURNS CONTROLLER
-    $r->addRoute("turnos", "GET", "TurnsController", "showTurns"); // turnos
+$r = new Router();
 
-    //Ruta por defecto
-    $r->setDefaultRoute("LoginController", "login");
+// TURNS CONTROLLER
+$r->addRoute("turnos", "GET", "TurnsController", "showTurns");
+$r->addRoute("verifyUser", "POST", "loginController", "verifyLogin");
+//Ruta por defecto
+$r->setDefaultRoute("LoginController", "login");
 
-    //run
-    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
+//run
+$r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

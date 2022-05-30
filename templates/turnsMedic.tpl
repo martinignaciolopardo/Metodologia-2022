@@ -15,14 +15,14 @@
             <h1>Próximos turnos</h1>
         </section>
         <section>
-            <form>
-                <select>
+            <form action="turnos" method="GET">
+                <select name="timeRange">
                     <option disabled>Turno</option>
                     <option value="maniana">Mañana</option>
-                    <option value="tarda">Tarde</option>
+                    <option value="tarde">Tarde</option>
                 </select>
-                <label>Desde: <input type="date"></label>
-                <label>Hasta: <input type="date"></label>
+                <label>Desde: <input name="fecha_min" type="date"></label>
+                <label>Hasta: <input name="fecha_max" type="date"></label>
                 <button>Filtrar</button>
             </form>
         </section>
@@ -34,10 +34,10 @@
                 </thead>
                 <tbody>
                     {foreach $turnos as $turno}
-                    <tr>
-                        <td>{$turno->dia}</td>
-                        <td>{$turno->horario}</td>
-                    </tr>
+                        <tr>
+                            <td>{date("d/M/Y" ,strtotime($turno->fecha))}</td>
+                            <td>{date("h:i:s" ,strtotime($turno->fecha))}</td>
+                        </tr>
                     {/foreach}
                 </tbody>
             </table>

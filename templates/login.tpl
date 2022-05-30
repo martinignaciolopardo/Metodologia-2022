@@ -13,8 +13,8 @@
     <div class="formUser">
         <img src="images/1.png">
         <form action="verifyUser" method="POST">
-            <input type="text" name="user" placeholder="Usuario" required>
-            <input type="password" name="contrasena" placeholder="Contraseña" required>
+            <input type="text" name="usuario" placeholder="Usuario" required>
+            <input type="password" name="contrasenia" placeholder="Contraseña" required>
             <input type="submit" value="Ingresar">
         </form>
     </div>

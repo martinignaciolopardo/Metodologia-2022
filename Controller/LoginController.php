@@ -33,8 +33,7 @@ class LoginController
             $usuario = $_POST['usuario'];
             $contrasenia = $_POST['contrasenia'];
             $user = $this->model->getUser($usuario);
-
-            if ($user && password_verify($contrasenia, $user->contrasenia)) {
+            if ($user && ($contrasenia == $user->contrasenia)) {
                 $this->authHelper->login($user);
                 $this->turnsView->showTurns();
             } else {
