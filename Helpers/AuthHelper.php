@@ -38,7 +38,7 @@ class AuthHelper
         $_SESSION['apellido'] = $user->apellido;
         $_SESSION['usuario'] = $user->usuario;
         $_SESSION['rol'] = "medic"; //por ahora los unicos usuarios que pueden loguearse son medicos
-        $_SESSION['id'] = $user->id_usuario;
+        $_SESSION['id'] = $user->id_medico;
     }
 
     function logout()

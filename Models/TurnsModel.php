@@ -1,14 +1,17 @@
 <?php
 
-class TurnsModel{   
+class TurnsModel
+{
 
     private $db;
-    function __construct(){
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=tpe_metodologias;charset=utf8','root','');
+    function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;' . 'dbname=tpe_metodologias;charset=utf8', 'root', '');
     }
 
-    function showTurns($id){
-         $query = $this->db->prepare('
+    function showTurns($id)
+    {
+        $query = $this->db->prepare('
             SELECT *
             FROM turno
             WHERE id_medico = ?
@@ -17,26 +20,28 @@ class TurnsModel{
         $turns = $query->fetchAll(PDO::FETCH_OBJ);
         return $turns;
     }
-   
-   function showMorningTurns($id){
+
+    function showMorningTurns($id)
+    {
         $query = $this->db->prepare('
             SELECT *
             FROM turno
             WHERE fecha
-            AND hour(fecha) BETWEEN '07:30:00' AND '11:30:00'
+            AND hour(fecha) BETWEEN "07:30:00" AND "11:30:00"
             AND id_medico = ?
         ');
         $query->execute(array($id));
         $turnsByMorning = $query->fetchAll(PDO::FETCH_OBJ);
-        return $turnsByTime;
+        return $turnsByMorning;
     }
 
-    function getAfternoonTurns($id){
+    function getAfternoonTurns($id)
+    {
         $query = $this->db->prepare('
             SELECT *
             FROM turno
             WHERE fecha
-            AND hour(fecha) BETWEEN '12:30:00' AND '16:30:00'
+            AND hour(fecha) BETWEEN "12:30:00" AND "16:30:00"
             AND id_medico = ?
         ');
         $query->execute(array($id));
@@ -44,39 +49,44 @@ class TurnsModel{
         return $turnsByAfternoon;
     }
 
-    function getTurnsByDay($idMedico, $fechaMin, $fechaMax = null){
-        if($fechaMax){
+    function getTurnsByDay($idMedico, $fechaMin, $fechaMax = null)
+    {
+        if ($fechaMax) {
             $sentencia = $this->db->prepare(
                 "SELECT * 
                 FROM turno
                 WHERE fecha >= CAST(? AS datetime)
                 AND fecha <= CAST(? AS datetime)
                 AND id_medico = ?
-            ORDER BY fecha;");
+            ORDER BY fecha;"
+            );
             $sentencia->execute(array($fechaMin, $fechaMax, $idMedico));
-        }else{
+        } else {
             $sentencia = $this->db->prepare(
                 "SELECT * 
                 FROM turno
                 WHERE fecha >= CAST(? AS datetime)
                 AND id_medico = ?
-            ORDER BY fecha;");
+            ORDER BY fecha;"
+            );
             $sentencia->execute(array($fechaMin, $idMedico));
         }
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getTurnsByMorningAndDays($idMedico, $fechaMin, $fechaMax = null){
-        if($fechaMax == null){
+    function getTurnsByMorningAndDays($idMedico, $fechaMin, $fechaMax = null)
+    {
+        if ($fechaMax == null) {
             $sentencia = $this->db->prepare(
                 "SELECT * 
                 FROM turno
                 WHERE fecha >= CAST(? AS datetime)
                 AND id_medico = ?
                 AND hour(fecha) BETWEEN '07:30:00' AND '11:30:00'
-                ORDER BY fecha;");
+                ORDER BY fecha;"
+            );
             $sentencia->execute(array($fechaMin, $idMedico));
-        }else{
+        } else {
             $sentencia = $this->db->prepare(
                 "SELECT * 
                 FROM turno
@@ -84,31 +94,35 @@ class TurnsModel{
                 AND fecha <= CAST(? AS datetime)
                 AND hour(fecha) BETWEEN '07:30:00' AND '11:30:00'
                 AND id_medico = ?
-            ORDER BY fecha;");
+            ORDER BY fecha;"
+            );
             $sentencia->execute(array($fechaMin, $fechaMax, $idMedico));
         }
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getTurnsByAfternoonAndDays($idMedico, $fechaMin, $fechaMax = null){
-        if($fechaMax == null){
+    function getTurnsByAfternoonAndDays($idMedico, $fechaMin, $fechaMax = null)
+    {
+        if ($fechaMax == null) {
             $sentencia = $this->db->prepare(
                 "SELECT * 
                 FROM turno
                 WHERE fecha >= CAST(? AS datetime)
-                AND hour(fecha) BETWEEN '12:30:00' AND '16:30:00'.
+                AND hour(fecha) BETWEEN '12:30:00' AND '16:30:00'
                 AND id_medico = ?
-                ORDER BY fecha;");
+                ORDER BY fecha;"
+            );
             $sentencia->execute(array($fechaMin, $idMedico));
-        }else{
-            $sentencia = $this->db->prepare(
-                "SELECT * 
+        } else {
+            $sentencia = $this->db->prepare('
+            SELECT * 
                 FROM turno
                 WHERE fecha >= CAST(? AS datetime)
                 AND fecha <= CAST(? AS datetime)
-                AND hour(fecha) BETWEEN '12:30:00' AND '16:30:00'.
+                AND hour(fecha) BETWEEN "12:30:00" AND "16:30:00"
                 AND id_medico = ?
-            ORDER BY fecha;");
+            ORDER BY fecha;
+            ');
             $sentencia->execute(array($fechaMin, $fechaMax, $idMedico));
         }
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
