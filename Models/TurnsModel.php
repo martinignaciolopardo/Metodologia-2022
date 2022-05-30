@@ -32,4 +32,26 @@ class TurnsModel{
         $turnsByAfternoon = $query->fetchAll(PDO::FETCH_OBJ);
         return $turnsByAfternoon;
     }
+
+    function getTurnsByDay($idMedico, $fechaMin, $fechaMax = null){
+        if($fechaMax){
+            $sentencia = $this->db->prepare(
+                "SELECT * 
+                FROM turno
+                WHERE fecha >= CAST(? AS datetime)
+                AND fecha <= CAST(? AS datetime)
+                AND id_medico = ?
+            ORDER BY fecha;");
+            $sentencia->execute(array($fechaMin, $fechaMax, $idMedico));
+        }else{
+            $sentencia = $this->db->prepare(
+                "SELECT * 
+                FROM turno
+                WHERE fecha >= CAST(? AS datetime)
+                AND id_medico = ?
+            ORDER BY fecha;");
+            $sentencia->execute(array($fechaMin, $idMedico));
+        }
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 }
