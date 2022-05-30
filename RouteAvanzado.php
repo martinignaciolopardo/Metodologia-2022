@@ -13,8 +13,8 @@
     // TURNS CONTROLLER
     $r->addRoute("turnos", "GET", "TurnsController", "showTurns"); // turnos
 
-    //Ruta por defecto.
-    //$r->setDefaultRoute("LoginController", "login");
+    //Ruta por defecto
+    $r->setDefaultRoute("LoginController", "login");
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
