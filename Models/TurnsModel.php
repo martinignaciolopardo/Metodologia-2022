@@ -6,6 +6,17 @@ class TurnsModel{
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=tpe_metodologias;charset=utf8','root','');
     }
+
+    function showTurns($id){
+         $query = $this->db->prepare('
+            SELECT *
+            FROM turno
+            WHERE id_medico = ?
+        ');
+        $query->execute(array($id));
+        $turns = $query->fetchAll(PDO::FETCH_OBJ);
+        return $turns;
+    }
    
    function showMorningTurns($id){
         $query = $this->db->prepare('
