@@ -45,6 +45,7 @@ footer {
 
 .filtroTurnos select {
     margin: 0 1rem 1rem;
+    text-align: center;
 }
 
 .filtroTurnos label {
