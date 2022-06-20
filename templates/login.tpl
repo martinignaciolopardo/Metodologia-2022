@@ -17,9 +17,10 @@
         <img src="images/1.png">
         <form class="loginForm" action="verifyUser" method="POST">
             <label for="usuario">Usuario</label>
-            <input id="usuario" type="text" name="usuario" placeholder="Usuario" required>
+            <input minlength="4" maxlength="8" id="usuario" type="text" name="usuario" placeholder="Usuario" required>
             <label for="contraseña">Contraseña</label>
-            <input id="contraseña" type="password" name="contrasenia" placeholder="Contraseña" required>
+            <input minlength="8" maxlength="16" id="contraseña" type="password" name="contrasenia"
+                placeholder="Contraseña" required>
             <input type="submit" value="Ingresar">
         </form>
     </div>
