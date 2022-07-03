@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Medicos</title>
+    <title>Listado de medicos</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         <section>
             <form class="medicos" action="medicos" method="GET">
                 <div>
-                    <label for="obra_social">Obra social</label>
+                    <label for="obra_social">Obra social:</label>
                     <select id="obra_socual" name="obraSocial">
                         {if $obra == 1}
                             <option value="1" selected >IOMA</option>
