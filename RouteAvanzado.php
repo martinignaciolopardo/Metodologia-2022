@@ -1,6 +1,7 @@
 <?php
 require_once './Controller/TurnsController.php';
 require_once './Controller/LoginController.php';
+require_once './Controller/MedicController.php';
 require_once 'RouterClass.php';
 
 // CONSTANTES PARA RUTEO
@@ -12,7 +13,8 @@ $r = new Router();
 
 // TURNS CONTROLLER
 $r->addRoute("turnos", "GET", "TurnsController", "showTurns");
-$r->addRoute("verifyUser", "POST", "loginController", "verifyLogin");
+$r->addRoute("verifyUser", "POST", "LoginController", "verifyLogin");
+$r->addRoute("medicos", "GET", "MedicController", "showMedics");
 //Ruta por defecto
 $r->setDefaultRoute("LoginController", "login");
 
