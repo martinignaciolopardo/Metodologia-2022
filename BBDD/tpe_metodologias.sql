@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2022 a las 22:29:49
+-- Tiempo de generación: 03-07-2022 a las 20:33:18
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -60,7 +60,7 @@ CREATE TABLE `medico` (
 --
 
 INSERT INTO `medico` (`id_medico`, `nombre`, `apellido`, `usuario`, `contrasenia`, `especialidad`) VALUES
-(1, 'Alberto', 'Peralta', 'doctorPeralta', '123456', 'neurocirujano'),
+(1, 'Alberto', 'Peralta', '@medico1', '12345678', 'neurocirujano'),
 (2, 'Jhon', 'Cena', 'youCantCMe', '123456', 'traumatologo');
 
 -- --------------------------------------------------------
@@ -81,6 +81,22 @@ CREATE TABLE `obra_social` (
 INSERT INTO `obra_social` (`id_os`, `descripcion`) VALUES
 (1, 'IOMA'),
 (2, 'OSDE');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `paciente`
+--
+
+CREATE TABLE `paciente` (
+  `nro_afiliado` int(11) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `apellido` varchar(30) NOT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `telefono` int(16) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `obra_social` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -130,11 +146,19 @@ ALTER TABLE `obra_social`
   ADD PRIMARY KEY (`id_os`);
 
 --
+-- Indices de la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  ADD PRIMARY KEY (`nro_afiliado`),
+  ADD KEY `obra_social` (`obra_social`);
+
+--
 -- Indices de la tabla `turno`
 --
 ALTER TABLE `turno`
   ADD PRIMARY KEY (`id_turno`),
-  ADD KEY `turno_medico` (`id_medico`);
+  ADD KEY `turno_medico` (`id_medico`),
+  ADD KEY `id_paciente` (`id_paciente`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -151,6 +175,12 @@ ALTER TABLE `medico`
 --
 ALTER TABLE `obra_social`
   MODIFY `id_os` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  MODIFY `nro_afiliado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `turno`
@@ -170,9 +200,16 @@ ALTER TABLE `atiende`
   ADD CONSTRAINT `atiende_obra_social` FOREIGN KEY (`id_os`) REFERENCES `obra_social` (`id_os`);
 
 --
+-- Filtros para la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`obra_social`) REFERENCES `obra_social` (`id_os`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `turno`
 --
 ALTER TABLE `turno`
+  ADD CONSTRAINT `turno_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`nro_afiliado`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `turno_medico` FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id_medico`);
 COMMIT;
 
