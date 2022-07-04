@@ -14,7 +14,7 @@
 
 <body>
     <div class="topBarLogin">
-        <input class="inputWhite" type="button" value="SOY MÉDICO / SECRETARIA">
+        <a href="/login"><input class="inputWhite" type="button" value="SOY MÉDICO / SECRETARIA"></a>
     </div>
     <div class="formPatient">
         <img src="images/1.png">
