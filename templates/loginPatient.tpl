@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <div class="topBarLogin">
+        <input class="inputWhite" type="button" value="SOY MÉDICO / SECRETARIA">
+    </div>
     <div class="formPatient">
         <img src="images/1.png">
         <form class="loginForm" action="verifyPatient" method="POST">

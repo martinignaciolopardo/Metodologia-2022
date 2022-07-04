@@ -24,7 +24,18 @@ img {
     color: white;
 }
 
-.loginForm input, .inputRegister{
+.topBarLogin{
+    display: flex;
+    justify-content: end;
+}
+
+.inputWhite{
+    background-color: white;
+    border: 0;
+    color: darkslategray;
+}
+
+.loginForm input{
     width: 20%;
     margin: 0 40% 1rem;
 }
