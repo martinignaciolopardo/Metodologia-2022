@@ -15,4 +15,8 @@ class LoginView
         $this->smarty->display('templates/login.tpl');
     }
 
+    function showLoginPatient()
+    {
+        $this->smarty->display('templates/loginPatient.tpl');
+    }
 }

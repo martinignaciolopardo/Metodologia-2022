@@ -27,6 +27,11 @@ class LoginController
         $this->view->showLogin();
     }
 
+    function loginPatient()
+    {
+        $this->view->showLoginPatient();
+    }
+
     function verifyLogin()
     {
         if (!empty($_POST['usuario']) && !empty($_POST['contrasenia'])) {
