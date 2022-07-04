@@ -3,19 +3,28 @@ img {
     margin: 4rem auto;
 }
 
-.formUser {
+.formUser, .formPatient {
     display: flex;
     flex-wrap: wrap;
 }
 
-.loginForm {
+.loginForm, .divRegister{
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.loginForm input {
+.divRegister{
+    margin-top: 30px;
+}
+
+.inputRegister{
+    background-color: black;
+    color: white;
+}
+
+.loginForm input, .inputRegister{
     width: 20%;
     margin: 0 40% 1rem;
 }
