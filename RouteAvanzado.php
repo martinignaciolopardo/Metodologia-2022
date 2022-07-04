@@ -14,6 +14,7 @@ $r = new Router();
 // TURNS CONTROLLER
 $r->addRoute("turnos", "GET", "TurnsController", "showTurns");
 $r->addRoute("verifyUser", "POST", "LoginController", "verifyLogin");
+$r->addRoute("indentifyPatient", "POST", "LoginController", "indentifyPatient");
 $r->addRoute("medicos", "GET", "MedicController", "showMedics");
 //Ruta por defecto
 $r->setDefaultRoute("LoginController", "login");
