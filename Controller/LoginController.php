@@ -3,7 +3,9 @@
 require_once "./Views/LoginView.php";
 require_once "./Controller/TurnsController.php";
 require_once "./Models/LoginModel.php";
-
+require_once "./Models/PatientModel.php";
+require_once "./Views/PatientView.php";
+require_once "./Views/medicView.php";
 
 class LoginController
 {
@@ -18,6 +20,9 @@ class LoginController
         $this->model = new LoginModel();
         $this->view = new LoginView();
         $this->turnsView = new TurnsController();
+        $this->patientModel = new PatientModel();
+        $this->patientView = new PatientView();
+        $this->medicView = new medicView();
         $this->authHelper = new AuthHelper();
     }
 
@@ -25,6 +30,11 @@ class LoginController
     function login()
     {
         $this->view->showLogin();
+    }
+
+    function loginPatient()
+    {
+        $this->view->showLoginPatient();
     }
 
     function verifyLogin()
@@ -41,4 +51,19 @@ class LoginController
             }
         }
     }
+
+    function identifyPatient(){
+        if (!empty($_POST['dni']) && !empty($_POST['dni'])) {
+            $dni = $_POST['dni'];
+            $user = $this->patientModel->buscarPaciente($dni);
+            if (!$user)
+                $this->patientView->showRegister();
+            else{
+                $this->authHelper->identifyPatient($patient);
+                $this->view->renderMedics();
+            }
+        }
+    }
 }
+
+

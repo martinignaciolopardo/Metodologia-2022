@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-07-2022 a las 20:33:18
+-- Tiempo de generación: 05-07-2022 a las 03:02:27
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -89,13 +89,14 @@ INSERT INTO `obra_social` (`id_os`, `descripcion`) VALUES
 --
 
 CREATE TABLE `paciente` (
-  `nro_afiliado` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL,
-  `apellido` varchar(30) NOT NULL,
+  `dni` int(9) NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `telefono` int(16) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `obra_social` int(11) NOT NULL
+  `mail` varchar(30) NOT NULL,
+  `obra_social` int(11) NOT NULL,
+  `nro_afiliado` int(11) NOT NULL,
+  `contrasena` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -150,6 +151,7 @@ ALTER TABLE `obra_social`
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`nro_afiliado`),
+  ADD UNIQUE KEY `dni` (`dni`),
   ADD KEY `obra_social` (`obra_social`);
 
 --
