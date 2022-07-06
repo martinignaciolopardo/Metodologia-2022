@@ -41,11 +41,15 @@ class AuthHelper
         $_SESSION['id'] = $user->id_medico;
     }
 
-    function identifyPatient($patient)
+    function loginPatient($patient)
     {
         session_start();
         $_SESSION['rol'] = "patient";
+        $_SESSION['nombre'] = $patient->nombre;
+        $_SESSION['apellido'] = $patient->apellido;
         $_SESSION['dni'] = $patient->dni;
+        $_SESSION['obra_social'] = $patient->obraSocial;
+        $_SESSION['nroAfiliado'] = $patient->nroAfiliado;
     }
 
     function logout()

@@ -22,6 +22,7 @@ $r->addRoute("medicos", "GET", "MedicController", "showMedics");
 $r->addRoute("login", "GET", "LoginController", "login");
 $r->addRoute("register", "GET", "LoginController", "showRegister");
 $r->addRoute("loginPatient", "GET", "LoginController", "loginPatient");
+$r->addRoute("verifyPatient", "GET", "LoginController", "verifyPatient");
 
 //Ruta por defecto
 $r->setDefaultRoute("LoginController", "loginPatient");

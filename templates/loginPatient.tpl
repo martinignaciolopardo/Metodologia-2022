@@ -18,7 +18,7 @@
     </div>
     <div class="formPatient">
         <img src="images/1.png">
-        <form class="loginForm" action="indentifyPatient" method="POST">
+        <form class="loginForm" action="verifyPatient" method="POST">
             <label for="dni-patient">NÚMERO DE DNI</label>
             <input type="number" minlength="6" maxlength="9" id="dni-patient" name="dni-patient"
                 placeholder="DNI (sin puntos)" required>
