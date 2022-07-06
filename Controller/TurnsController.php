@@ -2,19 +2,22 @@
 require_once "./Views/TurnsView.php";
 require_once "./Models/TurnsModel.php";
 require_once "./Helpers/AuthHelper.php";
+require_once "./Controller/MedicController.php";
+
 
 class TurnsController
 {
-
     private $model;
     private $view;
     private $authHelper;
+    private $medicController;
 
     function __construct()
     {
         $this->model = new TurnsModel();
         $this->view = new TurnsView();
         $this->authHelper = new AuthHelper();
+        $this->medicController = new MedicController();
     }
 
     function showTurns()
@@ -92,8 +95,7 @@ class TurnsController
 
     function showTurnsByMedic($params = null)
     {
-        //$this->authHelper->checkLoggedIn();
-        //$this->authHelper->checkMedic();
+        $this->authHelper->checkLoggedIn();
         $idMedico = $params[":ID"];
         $turnos = "";
         $timeRange = null;
@@ -160,6 +162,57 @@ class TurnsController
             else if ($timeRange == 'tarde')
                 $turnos = $this->model->getTurnsByAfternoonAndDays($idMedico, $fechaMin);
         }
-        $this->view->renderTurnsForPatients($turnos);
+        $this->view->renderTurnsForPatients($turnos, $idMedico);
+    }
+
+    function updateTurno($params = null)
+    {
+        $this->authHelper->checkLoggedIn();
+        $idTurno = $params[":ID"];
+        $nroPaciente = $_SESSION['nroAfiliado'];
+
+        if ($nroPaciente && $idTurno) {
+            $this->model->updateTurno($nroPaciente, $idTurno);
+            $this->medicController->showMedics();
+            $to_email = $_SESSION['mail'];
+            $headers = "From: sender\'s email";
+            $asd = mail($to_email, "reserva TurnoFacil", "Reservaste!!!Enhorabuena! Congratulaciones! Usted ha reservado un turno con TurnoFacil!! el proctologo!");
+            if ($asd) {
+                echo "Email successfully sent to $to_email...";
+            } else {
+                echo "Email sending failed...";
+            }
+        }
+    }
+    function confirmarTurno($params = null)
+    {
+        $this->authHelper->checkLoggedIn();
+        $idTurno = $params[":ID"];
+        $turno = $this->model->getTurno($idTurno);
+        $medico = $this->model->getMedico($turno->id_medico);
+        $this->view->verTurno($turno, $medico);
+    }
+
+    function mostrarDetalles($params = null)
+    {
+        $this->authHelper->checkLoggedIn();
+
+        if (
+            $_SESSION['nombre'] == $_POST['nombre'] &&
+            $_SESSION['direccion'] == $_POST['direccion'] &&
+            $_SESSION['telefono'] == $_POST['telefono'] &&
+            $_SESSION['mail'] == $_POST['mail'] &&
+            $_SESSION['dni'] == $_POST['dni'] &&
+            $_SESSION['obra_social'] == $_POST['obraSocial'] &&
+            $_SESSION['nroAfiliado'] == $_POST['nroAfiliado']
+        ) {
+            $idTurno = $params[":ID"];
+            $turno = $this->model->getTurno($idTurno);
+            $medico = $this->model->getMedico($turno->id_medico);
+            $this->model->updateTurno($_SESSION['nroAfiliado'], $idTurno);
+            $this->view->verDetallesTurno($turno, $medico);
+        } else {
+            header("Location: " . BASE_URL . "medicos");
+        }
     }
 }

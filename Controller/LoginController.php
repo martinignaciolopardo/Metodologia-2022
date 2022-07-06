@@ -2,10 +2,10 @@
 
 require_once "./Views/LoginView.php";
 require_once "./Controller/TurnsController.php";
+require_once "./Controller/MedicController.php";
 require_once "./Models/LoginModel.php";
 require_once "./Models/PatientModel.php";
 require_once "./Views/PatientView.php";
-require_once "./Views/medicView.php";
 
 class LoginController
 {
@@ -14,15 +14,16 @@ class LoginController
     private $view;
     private $authHelper;
     private $turnsView;
+    private $medicController;
+    private $patientModel;
 
     function __construct()
     {
         $this->model = new LoginModel();
         $this->view = new LoginView();
         $this->turnsView = new TurnsController();
+        $this->medicController = new MedicController();
         $this->patientModel = new PatientModel();
-        $this->patientView = new PatientView();
-        $this->medicView = new medicView();
         $this->authHelper = new AuthHelper();
     }
 
@@ -54,13 +55,14 @@ class LoginController
 
     function verifyPatient()
     {
-        if (!empty($_POST['dni']) && !empty($_POST['dni'])) {
+        if (!empty($_POST['dni']) && !empty($_POST['contrasenia'])) {
             $dni = $_POST['dni'];
             $contrasenia = $_POST['contrasenia'];
             $user = $this->patientModel->buscarPaciente($dni);
-            if ($user && ($contrasenia == $user->contrasenia)) {
+            if ($user && ($contrasenia == $user->contrasena)) {
                 $this->authHelper->loginPatient($user);
-                $this->turnsView->showTurns();
+
+                $this->medicController->showMedics();
             } else
                 $this->view->showLoginPatient("Acceso denegado. Usuario o contraseña invalidos");
         }

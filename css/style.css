@@ -3,39 +3,41 @@ img {
     margin: 4rem auto;
 }
 
-.formUser, .formPatient {
+.formUser,
+.formPatient {
     display: flex;
     flex-wrap: wrap;
 }
 
-.loginForm, .divRegister{
+.loginForm,
+.divRegister {
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.divRegister{
+.divRegister {
     margin-top: 30px;
 }
 
-.inputRegister{
+.inputRegister {
     background-color: black;
     color: white;
 }
 
-.topBarLogin{
+.topBarLogin {
     display: flex;
     justify-content: end;
 }
 
-.inputWhite{
+.inputWhite {
     background-color: white;
     border: 0;
     color: darkslategray;
 }
 
-.loginForm input{
+.loginForm input {
     width: 20%;
     margin: 0 40% 1rem;
 }
@@ -100,4 +102,16 @@ table {
 .result {
     color: black;
     font-weight: 200;
+}
+
+button {
+    border: 0;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 3px 3px 4px grey;
+}
+
+.imprimir {
+    display: flex;
+    justify-content: center;
 }

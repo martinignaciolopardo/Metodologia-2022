@@ -46,10 +46,12 @@ class AuthHelper
         session_start();
         $_SESSION['rol'] = "patient";
         $_SESSION['nombre'] = $patient->nombre;
-        $_SESSION['apellido'] = $patient->apellido;
+        $_SESSION['direccion'] = $patient->direccion;
+        $_SESSION['telefono'] = $patient->telefono;
+        $_SESSION['mail'] = $patient->mail;
         $_SESSION['dni'] = $patient->dni;
-        $_SESSION['obra_social'] = $patient->obraSocial;
-        $_SESSION['nroAfiliado'] = $patient->nroAfiliado;
+        $_SESSION['obra_social'] = $patient->obra_social;
+        $_SESSION['nroAfiliado'] = $patient->nro_afiliado;
     }
 
     function logout()

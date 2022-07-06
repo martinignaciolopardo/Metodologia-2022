@@ -18,25 +18,25 @@
             <h1 class="turnsTitle">Reservar turno</h1>
         </section>
         <section>
-            <form class="filtroTurnos" action="turnos" method="GET">
-                <select id="" name="medico">
-                    <option disabled>Médico</option>
-                    {foreach $medicos as $medico}
-                        <option value="{$medico}">{$medico}</option>
-                    {/foreach}
+            <form class="filtroTurnos" action="turnos/{$id} " method="GET">
+                <label for="turno">Turno</label>
+                <select id="turno" name="timeRange">
+                    <option disabled>Turno</option>
+                    <option value="maniana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="">Ver todo</option>
                 </select>
-                <select id="" name="especialidad">
-                    <option disabled>Especialidad</option>
-                    {foreach $especialidades as $especialidad}
-                        <option value="{$especialidad}">{$especialidad}</option>
-                    {/foreach}
-                </select>
-                <select id="" name="obraSocial">
-                    <option disabled>Obra social</option>
-                    {foreach $obrasSociales as $obraSocial}
-                        <option value="{$obraSocial}">{$obraSocial}</option>
-                    {/foreach}
-                </select>
+                <div class="rangoFecha">
+                    <div class="labelsRango">
+                        <p for="fecha_min">Desde: </p>
+                        <p for="fecha_max">Hasta:</p>
+                    </div>
+
+                    <input id="fecha_min" class="" name="fecha_min" type="date">
+
+                    <input id="fecha_max" name="fecha_max" type="date">
+                </div>
+
                 <button>Filtrar</button>
             </form>
         </section>
@@ -56,10 +56,11 @@
                             <td>{$turno->duracion}</td>
                             {if isset($turno->id_paciente) }
                                 <td>OCUPADO</td>
-                                {else} 
-                                <td><a href="paciente/updateTurno">RESERVAR TURNO</a></td> {*se recarga la pagina y aparece ocupado*}
+                            {else}
+                                <td><a href="turnos/verDetalles/{$turno->id_turno}">RESERVAR TURNO</a></td>
+                                {*se recarga la pagina y aparece ocupado*}
                             {/if}
-                            
+
                         </tr>
                     {/foreach}
                 </tbody>
