@@ -127,4 +127,10 @@ class TurnsModel
         }
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
+
+    function updateTurn($idPaciente)
+    {
+        $sentencia = $this->db->prepare("UPDATE turno SET id_paciente = ? WHERE id_turno = ?");
+        $sentencia->execute(array($idPaciente));
+    }
 }
