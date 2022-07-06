@@ -41,6 +41,13 @@ class AuthHelper
         $_SESSION['id'] = $user->id_medico;
     }
 
+    function identifyPatient($patient)
+    {
+        session_start();
+        $_SESSION['rol'] = "patient";
+        $_SESSION['dni'] = $patient->dni;
+    }
+
     function logout()
     {
         $this->verify();
