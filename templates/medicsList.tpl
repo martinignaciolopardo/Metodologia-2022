@@ -26,7 +26,7 @@
             <form class="medicos" action="medicos" method="GET">
                 <div>
                     <label for="obra_social">Obra social:</label>
-                    <select id="obra_socual" name="obraSocial">
+                    <select id="obra_social" name="obraSocial">
                         {if $obra == 1}
                             <option value="1" selected >IOMA</option>
                         {else}
@@ -50,7 +50,7 @@
                         {if $obra == 5}
                             <option value="5" selected >TODAS</option>
                         {else}
-                            <option value="5"></option>    
+                            <option value="5">TODAS</option>    
                         {/if}
 
                     </select>
