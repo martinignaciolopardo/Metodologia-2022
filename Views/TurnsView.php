@@ -15,4 +15,10 @@ class TurnsView
         $this->smarty->assign('turnos', $turnos);
         $this->smarty->display('templates/turnsMedic.tpl');
     }
+
+    function renderTurnsForPatients($turnos)
+    {
+        $this->smarty->assign('turnos', $turnos);
+        $this->smarty->display('templates/turnsPatient.tpl');
+    }
 }

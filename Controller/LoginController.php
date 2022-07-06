@@ -52,18 +52,21 @@ class LoginController
         }
     }
 
-    function identifyPatient(){
+    function identifyPatient()
+    {
         if (!empty($_POST['dni']) && !empty($_POST['dni'])) {
             $dni = $_POST['dni'];
             $user = $this->patientModel->buscarPaciente($dni);
             if (!$user)
                 $this->patientView->showRegister();
-            else{
+            else {
                 $this->authHelper->identifyPatient($patient);
                 $this->view->renderMedics();
             }
         }
     }
+    function showRegister()
+    {
+        $this->view->showRegister();
+    }
 }
-
-

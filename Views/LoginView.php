@@ -19,4 +19,10 @@ class LoginView
     {
         $this->smarty->display('templates/loginPatient.tpl');
     }
+
+    function showRegister()
+    {
+        $this->smarty->assign('result', "");
+        $this->smarty->display('templates/registerPatient.tpl');
+    }
 }

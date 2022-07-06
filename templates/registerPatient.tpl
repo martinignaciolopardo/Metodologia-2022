@@ -22,7 +22,6 @@
             <input type="text" name="telefono" placeholder="Teléfono" required>
             <input type="email" name="mail" placeholder="Mail" required>
             <input type="text" name="obraSocial" placeholder="Obra social" required>
-            <input type="number" name="nroAfiliado" placeholder="Numero de afiliado" required>
             <input type="password" name="contrasena" placeholder="Password" required>
             <input type="submit" value="Registrar">
         </form>

@@ -14,17 +14,18 @@
 
 <body>
     <div class="topBarLogin">
-        <a href="/login"><input class="inputWhite" type="button" value="SOY MÉDICO / SECRETARIA"></a>
+        <a href="login"><input class="inputWhite" type="button" value="SOY MÉDICO / SECRETARIA"></a>
     </div>
     <div class="formPatient">
         <img src="images/1.png">
         <form class="loginForm" action="indentifyPatient" method="POST">
             <label for="dni-patient">NÚMERO DE DNI</label>
-            <input type="number" minlength="6" maxlength="9" id="dni-patient" name="dni-patient" placeholder="DNI (sin puntos)" required>
+            <input type="number" minlength="6" maxlength="9" id="dni-patient" name="dni-patient"
+                placeholder="DNI (sin puntos)" required>
             <input type="submit" value="Ingresar">
         </form>
         <div class="divRegister">
-            <input class="inputRegister" type="button" value="Registrarme">
+            <a href="register"><input class="inputRegister" type="button" value="Registrarme"></a>
         </div>
     </div>
     <footer>
