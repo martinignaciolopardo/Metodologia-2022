@@ -21,6 +21,26 @@ class medicModel{
         $medics = $query->fetchAll(PDO::FETCH_OBJ);
         return $medics;
     }
+    // trae todas las especialidades
+    function getEspecialidades(){
+        $query = $this->db->prepare('
+            SELECT descripcion
+            FROM obra_social
+        ');
+        $query->execute(array());
+        $especialidades = $query->fetchAll(PDO::FETCH_OBJ);
+        return $especialidades;
+    }
+    // trae todas las obras sociales
+    function getObrasSociales(){
+        $query = $this->db->prepare('
+            SELECT especialidad
+            FROM medico
+        ');
+        $query->execute(array());
+        $obrasSociales = $query->fetchAll(PDO::FETCH_OBJ);
+        return $obrasSociales;
+    }
 
     //trae todos los medicos con la especialidad seleccionada
     function getMedicsByspecialty($especialidad){
