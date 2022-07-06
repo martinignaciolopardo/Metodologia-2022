@@ -52,16 +52,16 @@ class LoginController
         }
     }
 
-    function identifyPatient(){
+    function verifyPatient(){
         if (!empty($_POST['dni']) && !empty($_POST['dni'])) {
             $dni = $_POST['dni'];
+            $contrasenia = $_POST['contrasenia'];
             $user = $this->patientModel->buscarPaciente($dni);
-            if (!$user)
-                $this->patientView->showRegister();
-            else{
-                $this->authHelper->identifyPatient($patient);
-                $this->view->renderMedics();
-            }
+            if ($user && ($contrasenia == $user->contrasenia)){
+                $this->authHelper->loginPatient($user);
+                $this->turnsView->showTurns();
+            }else
+                $this->view->showLoginPatient("Acceso denegado. Usuario o contraseña invalidos");
         }
     }
 }
