@@ -15,7 +15,7 @@
 <body>
 
     <main>
-        
+
         <section>
             <h1 class="turnsTitle">Seleccionar un medico</h1>
         </section>
@@ -28,29 +28,29 @@
                     <label for="obra_social">Obra social:</label>
                     <select id="obra_social" name="obraSocial">
                         {if $obra == 1}
-                            <option value="1" selected >IOMA</option>
+                            <option value="1" selected>IOMA</option>
                         {else}
-                            <option value="1">IOMA</option>    
+                            <option value="1">IOMA</option>
                         {/if}
                         {if $obra == 2}
-                            <option value="2" selected >OSDE</option>
+                            <option value="2" selected>OSDE</option>
                         {else}
-                            <option value="2">OSDE</option>    
+                            <option value="2">OSDE</option>
                         {/if}
                         {if $obra == 3}
-                            <option value="3" selected >SWISS MEDICAL</option>
+                            <option value="3" selected>SWISS MEDICAL</option>
                         {else}
-                            <option value="3">SWISS MEDICAL</option>    
+                            <option value="3">SWISS MEDICAL</option>
                         {/if}
                         {if $obra == 4}
-                            <option value="4" selected >SANCOR SALUD</option>
+                            <option value="4" selected>SANCOR SALUD</option>
                         {else}
-                            <option value="4">SANCOR SALUD</option>    
+                            <option value="4">SANCOR SALUD</option>
                         {/if}
                         {if $obra == 5}
-                            <option value="5" selected >TODAS</option>
+                            <option value="5" selected>TODAS</option>
                         {else}
-                            <option value="5">TODAS</option>    
+                            <option value="5">TODAS</option>
                         {/if}
 
                     </select>
@@ -77,12 +77,12 @@
                 <tbody>
                     {foreach $medics as $medico}
                         <tr>
-                            <td><a href="#">{$medico->nombre}</a></td>
-                            <td> 
+                            <td><a href="turnos/{$medico->id_medico}">{$medico->nombre}</a></td>
+                            <td>
                                 {if $medico->descripcion}
                                     {$medico->descripcion}
                                 {else}
-                                    - 
+                                    -
                                 {/if}
                             </td>
                             <td> {$medico->especialidad} </td>

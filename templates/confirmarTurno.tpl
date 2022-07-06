@@ -13,22 +13,26 @@
 </head>
 
 <body>
-    <h1>Registrarme</h1>
+    <h1>Confirmar Turno</h1>
     <div class="formUser">
-        <form action="addUser" method="POST">
+        <form action="turnos/confirmarTurno/{$turno->id_turno}" method="POST">
             <input type="name" name="nombre" placeholder="Nombre y apellido" required>
             <input type="number" name="dni" placeholder="DNI" required>
             <input type="text" name="direccion" placeholder="Dirección" required>
             <input type="text" name="telefono" placeholder="Teléfono" required>
             <input type="email" name="mail" placeholder="Mail" required>
             <input type="text" name="obraSocial" placeholder="Obra social" required>
+            <input type="text" name="nroAfiliado" placeholder="Nro afiliado" required>
             <input type="password" name="contrasena" placeholder="Password" required>
-            <input type="submit" value="Registrar">
+            <input type="submit" value="Confirmar">
         </form>
-        {if $result != ""}
-            <p class="result">{$result}</p>
-        {/if}
-        <a href="login">Iniciar sesión</a>
+        <div>
+            <ul>
+                <li>{$turno->fecha}</li>
+                <li>{$turno->duracion}</li>
+                <li>{$medico->apellido}, {$medico->nombre}</li>
+            </ul>
+        </div>
     </div>
     <footer>
         Copyright 2022-2022. All Rights Reserved.
