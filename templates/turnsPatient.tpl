@@ -16,6 +16,9 @@
     <main>
         <section>
             <h1 class="turnsTitle">Reservar turno</h1>
+            {if $msj}
+                <p class="alertaOS">{$msj}</p>
+            {/if}
         </section>
         <section>
             <form class="filtroTurnos" action="turnos/{$id} " method="GET">
@@ -28,7 +31,7 @@
                 </select>
                 <div class="rangoFecha">
                     <div class="labelsRango">
-                        <p for="fecha_min">Desde: </p>
+                        <p for="fecha_min">Desde:</p>
                         <p for="fecha_max">Hasta:</p>
                     </div>
 

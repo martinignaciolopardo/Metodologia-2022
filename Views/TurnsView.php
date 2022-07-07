@@ -16,10 +16,11 @@ class TurnsView
         $this->smarty->display('templates/turnsMedic.tpl');
     }
 
-    function renderTurnsForPatients($turnos, $idMedico)
+    function renderTurnsForPatients($turnos, $idMedico, $msj = null)
     {
         $this->smarty->assign('turnos', $turnos);
         $this->smarty->assign('id', $idMedico);
+        $this->smarty->assign('msj', $msj);
         $this->smarty->display('templates/turnsPatient.tpl');
     }
 
