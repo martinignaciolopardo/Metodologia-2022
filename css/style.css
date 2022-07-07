@@ -115,3 +115,8 @@ button {
     display: flex;
     justify-content: center;
 }
+
+.alertaOS {
+    text-align: center;
+    color: red;
+}

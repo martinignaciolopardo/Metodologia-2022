@@ -149,4 +149,12 @@ class TurnsModel
         $medico = $sentencia->fetch(PDO::FETCH_OBJ);
         return $medico;
     }
+
+    function atiendeObraSocial($id_os, $id)
+    {
+        $sentencia = $this->db->prepare("SELECT diferencial FROM atiende WHERE id_medico = ? AND id_os = ?");
+        $sentencia->execute(array($id, $id_os));
+        $medico = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $medico;
+    }
 }

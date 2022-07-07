@@ -109,6 +109,8 @@ class TurnsController
         if (isset($_GET["fecha_max"]) && !empty($_GET["fecha_max"]))
             $fechaMax = $_GET["fecha_max"];
 
+        $atiende = $this->model->atiendeObraSocial($_SESSION['obra_social'], $idMedico);
+
         if ($fechaMin == null && $fechaMax == null) {
             if ($timeRange) {
                 if ($timeRange == 'maniana') {
@@ -162,7 +164,16 @@ class TurnsController
             else if ($timeRange == 'tarde')
                 $turnos = $this->model->getTurnsByAfternoonAndDays($idMedico, $fechaMin);
         }
-        $this->view->renderTurnsForPatients($turnos, $idMedico);
+        $mensaje = null;
+        if (!$atiende) {
+            $mensaje = "El medico no atiende tu obra social";
+            $this->view->renderTurnsForPatients($turnos, $idMedico, $mensaje);
+        } else if ($atiende && $atiende->diferencial > 0) {
+            $mensaje = "El medico cobra un diferencial de " . $atiende->diferencial;
+            $this->view->renderTurnsForPatients($turnos, $idMedico, $mensaje);
+        } else {
+            $this->view->renderTurnsForPatients($turnos, $idMedico);
+        }
     }
 
     function updateTurno($params = null)
